@@ -14,7 +14,7 @@ public class FFT extends EzPlug {
 
 	EzVarSequence input = new EzVarSequence("Input");
 	EzVarText	type_2D = new EzVarText("Type", new String[] { "2D", "3D" }, 0, false);
-	EzVarText	scaled = new EzVarText("Scaling", new String[] { "Linear scale", "Log scale" }, 0, false);
+	EzVarText	display = new EzVarText("Display as", new String[] {  "Magnitude/Phase Pair", "Real/Imaginary Pair" }, 0, false);
 	EzVarText	swap = new EzVarText("Swap Quadrants?", new String[] { "Yes", "No" }, 1, false);
 
 	@Override
@@ -23,7 +23,7 @@ public class FFT extends EzPlug {
 		super.addEzComponent(input);
 		super.addEzComponent(type_2D);
 		super.addEzComponent(swap);
-		super.addEzComponent(scaled);		
+		super.addEzComponent(display);		
 		super.setTimeDisplay(true);
 	}
 
@@ -34,17 +34,17 @@ public class FFT extends EzPlug {
 		Sequence sequence = input.getValue();
 
 		if(type_2D.getValue()=="2D")		
-			FFT_2D(sequence, swap.getValue(), scaled.getValue());	
+			FFT_2D(sequence, swap.getValue(), display.getValue());	
 		else
 			MessageDialog.showDialog("FFT3D not implemented yet !");	
 	}
 
 
 
-	private Sequence FFT_2D(Sequence sequence, String swap, String scaling) 
+	private Sequence FFT_2D(Sequence sequence, String swap, String display) 
 	{
 		Sequence fImage = new Sequence();
-		fImage.setName("Fourier Transformed Magnitude");
+		fImage.setName("Fourier Transform");
 		// TODO Auto-generated method stub
 		//sequence = sequence.convertToType(DataType.DOUBLE, true);
 		int _w = sequence.getSizeX();
@@ -54,8 +54,8 @@ public class FFT extends EzPlug {
 		int hc = (int) Math.ceil(_h/2);
 
 		final DoubleFFT_2D fft = new DoubleFFT_2D(_w, _h);
-		if(swap=="No")
-		{
+		if(swap == "No")
+		{ //No Quadrant swapping
 
 			for(int k = 0; k < _z; k++)
 			{
@@ -67,20 +67,22 @@ public class FFT extends EzPlug {
 				resultArray.beginUpdate();
 				try
 				{
-					if(scaling=="Linear scale")
+					if(display=="Magnitude/Phase Pair")
 						for(int x = 0; x < _w; x++)
 						{
 							for(int y = 0; y < _h; y++)
 							{
 								resultArray.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[(x + y * _h)*2 + 0], 2) + Math.pow(fArray[(x + y * _h)*2 + 1], 2)));
+								resultArray.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[(x + y * _h)*2 + 0], 2) + Math.pow(fArray[(x + y * _h)*2 + 1], 2)));
 							}
 						}
-					else // Log scale
+					else // Real/Imaginary Pair
 						for(int x = 0; x < _w; x++)
 						{
 							for(int y = 0; y < _h; y++)
 							{
-								resultArray.setDataAsDouble(x, y, 0, Math.log(Math.sqrt(Math.pow(fArray[(x + y * _h)*2 + 0], 2) + Math.pow(fArray[(x + y * _h)*2 + 1], 2))));
+								resultArray.setDataAsDouble(x, y, 0, fArray[(x + y * _h)*2 + 0]);
+								resultArray.setDataAsDouble(x, y, 1, fArray[(x + y * _h)*2 + 1]);
 							}
 						}					
 
@@ -103,7 +105,7 @@ public class FFT extends EzPlug {
 				resultArray.beginUpdate();
 				try
 				{
-					if(scaling=="Linear scale")
+					if(display=="Magnitude/Phase Pair")
 					{
 						for(int x = 0; x < (wc+1); x++)
 						{
@@ -133,17 +135,19 @@ public class FFT extends EzPlug {
 							}
 						}
 					}					
-					else //Logscale
+					else //Real/Imaginary Pair
 					{
 						for(int x = 0; x < (wc+1); x++)
 						{
 							for(int y = 0; y < (hc+1); y++)
 							{
-								resultArray.setDataAsDouble(x, y, 0, Math.log(Math.sqrt(Math.pow(fArray[((wc-x) + (hc-y) * _h)*2 + 0], 2)+Math.pow(fArray[((wc-x) + (hc-y) * _h)*2 + 1], 2))));
+								resultArray.setDataAsDouble(x, y, 0, fArray[((wc-x) + (hc-y) * _h)*2 + 0]);
+								resultArray.setDataAsDouble(x, y, 1, fArray[((wc-x) + (hc-y) * _h)*2 + 1]);
 							}
 							for(int y = hc+1; y < _h; y++)
 							{
-								resultArray.setDataAsDouble(x, y, 0, Math.log(Math.sqrt(Math.pow(fArray[((wc-x) + (y-hc) * _h)*2 + 0], 2)+Math.pow(fArray[((wc-x) + (y-hc) * _h)*2 + 1], 2))));
+								resultArray.setDataAsDouble(x, y, 0, fArray[((wc-x) + (y-hc) * _h)*2 + 0]);
+								resultArray.setDataAsDouble(x, y, 1, fArray[((wc-x) + (y-hc) * _h)*2 + 1]);
 							}
 
 						}
@@ -151,11 +155,13 @@ public class FFT extends EzPlug {
 						{
 							for(int y = 0; y < (hc+1); y++)
 							{
-								resultArray.setDataAsDouble(x, y, 0, Math.log(Math.sqrt(Math.pow(fArray[((x-wc) + (hc-y) * _h)*2 + 0], 2)+Math.pow(fArray[((x-wc) + (hc-y) * _h)*2 + 1], 2))));
+								resultArray.setDataAsDouble(x, y, 0, fArray[((x-wc) + (hc-y) * _h)*2 + 0]);
+								resultArray.setDataAsDouble(x, y, 1, fArray[((x-wc) + (hc-y) * _h)*2 + 1]);
 							}
 							for(int y = hc+1; y < _h; y++)
 							{
-								resultArray.setDataAsDouble(x, y, 0, Math.log(Math.sqrt(Math.pow(fArray[((x-wc) + (y-hc) * _h)*2 + 0], 2)+Math.pow(fArray[((x-wc) + (y-hc) * _h)*2 + 1], 2))));
+								resultArray.setDataAsDouble(x, y, 0, fArray[((x-wc) + (y-hc) * _h)*2 + 0]);
+								resultArray.setDataAsDouble(x, y, 1, fArray[((x-wc) + (y-hc) * _h)*2 + 1]);
 							}
 						}						
 						
