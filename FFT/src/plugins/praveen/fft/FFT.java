@@ -73,7 +73,7 @@ public class FFT extends EzPlug {
 							for(int y = 0; y < _h; y++)
 							{
 								resultArray.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[(x + y * _h)*2 + 0], 2) + Math.pow(fArray[(x + y * _h)*2 + 1], 2)));
-								resultArray.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[(x + y * _h)*2 + 0], 2) + Math.pow(fArray[(x + y * _h)*2 + 1], 2)));
+								resultArray.setDataAsDouble(x, y, 1, Math.atan2(fArray[(x + y * _h)*2 + 1], fArray[(x + y * _h)*2 + 0]));
 							}
 						}
 					else // Real/Imaginary Pair
