@@ -1,6 +1,7 @@
 package plugins.praveen.fft;
 
 import edu.emory.mathcs.jtransforms.fft.DoubleFFT_2D;
+import edu.emory.mathcs.jtransforms.fft.DoubleFFT_3D;
 import icy.image.IcyBufferedImage;
 import icy.sequence.Sequence;
 import icy.type.DataType;
@@ -36,15 +37,66 @@ public class FFT extends EzPlug {
 		if(type_2D.getValue()=="2D")		
 			FFT_2D(sequence, swap.getValue(), display.getValue());	
 		else
-			MessageDialog.showDialog("FFT3D not implemented yet !");	
+			FFT_3D(sequence, swap.getValue(), display.getValue());
+			//MessageDialog.showDialog("FFT3D not implemented yet !");	
 	}
 
 
 
+	private Sequence FFT_3D(Sequence sequence, String swap, String display) {
+		// TODO Auto-generated method stub
+		Sequence fImage = new Sequence();
+		fImage.setName("Fourier Transform 3D");
+		int _w = sequence.getSizeX();
+		int _h = sequence.getSizeY();
+		int _z = sequence.getSizeZ();
+		int wc = (int) Math.ceil(_w/2);
+		int hc = (int) Math.ceil(_h/2);
+		int zc = (int) Math.ceil(_z/2);
+		
+		final DoubleFFT_3D fft = new DoubleFFT_3D(_w, _h, _z);
+		double[] fArray = new double[_z];
+		if(swap == "No")
+		{ //No Quadrant swapping
+			IcyBufferedImage resultArray = new IcyBufferedImage(_w, _h, 2, DataType.DOUBLE);
+			for(int k = 0; k < _z; k++)
+			{				
+				resultArray.setDataXY(0, Array1DUtil.arrayToDoubleArray(sequence.getDataXY(0, k, 0), sequence.isSignedDataType()));//set buffered image to sequence  
+				fArray[k] = resultArray.getDataCopyCXYAsDouble();
+			}						
+			
+			fft.complexForward(fArray);//Does only on half the data. To get the full transform use realForwardFull
+			resultArray.beginUpdate();
+			try
+			{
+				
+					for(int x = 0; x < _w; x++)
+					{
+						for(int y = 0; y < _h; y++)
+						{
+							resultArray.setDataAsDouble(x, y, 0, fArray[(x + y * _h)*2 + 0]);
+							resultArray.setDataAsDouble(x, y, 1, fArray[(x + y * _h)*2 + 1]);
+						}
+					}
+								
+
+			}finally{
+				resultArray.endUpdate();
+			}
+		}
+		else
+		{
+			MessageDialog.showDialog("Not implemented yet !");
+			
+		}
+		addSequence(fImage);
+		return fImage;
+	}
+
 	private Sequence FFT_2D(Sequence sequence, String swap, String display) 
 	{
 		Sequence fImage = new Sequence();
-		fImage.setName("Fourier Transform");
+		fImage.setName("Fourier Transform 2D");
 		// TODO Auto-generated method stub
 		//sequence = sequence.convertToType(DataType.DOUBLE, true);
 		int _w = sequence.getSizeX();
