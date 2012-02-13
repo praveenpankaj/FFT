@@ -10,7 +10,7 @@ import plugins.adufour.ezplug.EzPlug;
 import plugins.adufour.ezplug.EzVarSequence;
 import plugins.adufour.ezplug.EzVarText;
 
-public class FFT extends EzPlug {
+public class fft extends EzPlug {
 
 	EzVarSequence input = new EzVarSequence("Input");
 	EzVarText	ndims = new EzVarText("Type", new String[] { "2D", "3D" }, 0, false);
@@ -319,6 +319,8 @@ public class FFT extends EzPlug {
 				{
 					if(display=="Magnitude/Phase Pair")
 					{
+						fSequence.setChannelName(0, "Magnitude");
+						fSequence.setChannelName(1, "Phase");
 						for(int x = 0; x < _w; x++)
 						{
 							for(int y = 0; y < _h; y++)
@@ -332,7 +334,8 @@ public class FFT extends EzPlug {
 						//fImage.setChannelName(1, "Phase");
 					}
 					else // Real/Imaginary Pair
-					{	
+					{	fSequence.setChannelName(0, "Real");
+					fSequence.setChannelName(1, "Imaginary");
 						for(int x = 0; x < _w; x++)
 						{
 							for(int y = 0; y < _h; y++)
@@ -350,8 +353,7 @@ public class FFT extends EzPlug {
 
 				fSequence.setImage(0, k, resultArray);
 			}
-			fSequence.setChannelName(0, "Real");
-			fSequence.setChannelName(1, "Imaginary");
+			
 		}
 		else
 		{ //Swap quadrants
@@ -366,7 +368,8 @@ public class FFT extends EzPlug {
 				try
 				{
 					if(display=="Magnitude/Phase Pair")
-					{
+					{fSequence.setChannelName(0, "Magnitude");
+					fSequence.setChannelName(1, "Phase");
 						for(int x = 0; x < (wc+1); x++)
 						{
 							for(int y = 0; y < (hc+1); y++)
@@ -396,7 +399,8 @@ public class FFT extends EzPlug {
 						}
 					}					
 					else //Real/Imaginary Pair
-					{
+					{fSequence.setChannelName(0, "Real");
+					fSequence.setChannelName(1, "Imaginary");
 						for(int x = 0; x < (wc+1); x++)
 						{
 							for(int y = 0; y < (hc+1); y++)
@@ -433,8 +437,7 @@ public class FFT extends EzPlug {
 
 				fSequence.setImage(0, k, resultArray);
 			}
-			fSequence.setChannelName(0, "Real");
-			fSequence.setChannelName(1, "Imaginary");
+			
 		}
 
 
