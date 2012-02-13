@@ -142,21 +142,21 @@ public class fft extends EzPlug {
 							}
 							for(int y = hc+1; y < _h; y++)
 							{
-								resultMatrix.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((wc-x) + (y-hc) * _w + (zc-k) * _w * _h)*2 + 0], 2)+Math.pow(fArray[((wc-x) + (y-hc) * _w + (zc-k) * _w * _h)*2 + 1], 2)));
-								resultMatrix.setDataAsDouble(x, y, 1, Math.atan2(fArray[((wc-x) + (y-hc) * _w + (zc-k) * _w * _h)*2 + 1], fArray[((wc-x) + (y-hc) * _w + (zc-k) * _w * _h)*2 + 0]));
+								resultMatrix.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((wc-x) + (_h+(hc-y)) * _w + (zc-k) * _w * _h)*2 + 0], 2)+Math.pow(fArray[((wc-x) + (_h+(hc-y)) * _w + (zc-k) * _w * _h)*2 + 1], 2)));
+								resultMatrix.setDataAsDouble(x, y, 1, Math.atan2(fArray[((wc-x) + (_h+(hc-y)) * _w + (zc-k) * _w * _h)*2 + 1], fArray[((wc-x) + (_h+(hc-y)) * _w + (zc-k) * _w * _h)*2 + 0]));
 							}
 						}
 						for(int x = wc+1; x < _w; x++)
 						{
 							for(int y = 0; y < hc+1; y++)
 							{
-								resultMatrix.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((x-wc) + (hc-y) * _w + (zc-k) * _w * _h)*2 + 0], 2)+Math.pow(fArray[((x-wc) + (hc-y) * _w + (zc-k) * _w * _h)*2 + 1], 2)));
-								resultMatrix.setDataAsDouble(x, y, 1, Math.atan2(fArray[((x-wc) + (hc-y) * _w + (zc-k) * _w * _h)*2 + 1], fArray[((x-wc) + (hc-y) * _w + (zc-k) * _w * _h)*2 + 0]));
+								resultMatrix.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((_w+(wc-x)) + (hc-y) * _w + (zc-k) * _w * _h)*2 + 0], 2)+Math.pow(fArray[((_w+(wc-x)) + (hc-y) * _w + (zc-k) * _w * _h)*2 + 1], 2)));
+								resultMatrix.setDataAsDouble(x, y, 1, Math.atan2(fArray[((_w+(wc-x)) + (hc-y) * _w + (zc-k) * _w * _h)*2 + 1], fArray[((_w+(wc-x)) + (hc-y) * _w + (zc-k) * _w * _h)*2 + 0]));
 							}
 							for(int y = hc+1; y < _h; y++)
 							{
-								resultMatrix.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((x-wc) + (y-hc) * _w + (zc-k) * _w * _h)*2 + 0], 2)+Math.pow(fArray[((x-wc) + (y-hc) * _w + (zc-k) * _w * _h)*2 + 1], 2)));
-								resultMatrix.setDataAsDouble(x, y, 1, Math.atan2(fArray[((x-wc) + (y-hc) * _w + (zc-k) * _w * _h)*2 + 1], fArray[((x-wc) + (y-hc) * _w + (zc-k) * _w * _h)*2 + 0]));
+								resultMatrix.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w + (zc-k) * _w * _h)*2 + 0], 2)+Math.pow(fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w + (zc-k) * _w * _h)*2 + 1], 2)));
+								resultMatrix.setDataAsDouble(x, y, 1, Math.atan2(fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w + (zc-k) * _w * _h)*2 + 1], fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w + (zc-k) * _w * _h)*2 + 0]));
 							}
 						}
 					}
@@ -178,26 +178,26 @@ public class fft extends EzPlug {
 						{
 							for(int y = 0; y < hc+1; y++)
 							{
-								resultMatrix.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((wc-x) + (hc-y) * _w + (k-zc) * _w * _h)*2 + 0], 2)+Math.pow(fArray[((wc-x) + (hc-y) * _w + (k-zc) * _w * _h)*2 + 1], 2)));
-								resultMatrix.setDataAsDouble(x, y, 1, Math.atan2(fArray[((wc-x) + (hc-y) * _w + (k-zc) * _w * _h)*2 + 1], fArray[((wc-x) + (hc-y) * _w + (k-zc) * _w * _h)*2 + 0]));
+								resultMatrix.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((wc-x) + (hc-y) * _w + (_z+(zc-k)) * _w * _h)*2 + 0], 2)+Math.pow(fArray[((wc-x) + (hc-y) * _w + (_z+(zc-k)) * _w * _h)*2 + 1], 2)));
+								resultMatrix.setDataAsDouble(x, y, 1, Math.atan2(fArray[((wc-x) + (hc-y) * _w + (_z+(zc-k)) * _w * _h)*2 + 1], fArray[((wc-x) + (hc-y) * _w + (_z+(zc-k)) * _w * _h)*2 + 0]));
 							}
 							for(int y = hc+1; y < _h; y++)
 							{
-								resultMatrix.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((wc-x) + (y-hc) * _w + (k-zc) * _w * _h)*2 + 0], 2)+Math.pow(fArray[((wc-x) + (y-hc) * _w + (k-zc) * _w * _h)*2 + 1], 2)));
-								resultMatrix.setDataAsDouble(x, y, 1, Math.atan2(fArray[((wc-x) + (y-hc) * _w + (k-zc) * _w * _h)*2 + 1], fArray[((wc-x) + (y-hc) * _w + (k-zc) * _w * _h)*2 + 0]));
+								resultMatrix.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((wc-x) + (_h+(hc-y)) * _w + (_z+(zc-k)) * _w * _h)*2 + 0], 2)+Math.pow(fArray[((wc-x) + (_h+(hc-y)) * _w + (_z+(zc-k)) * _w * _h)*2 + 1], 2)));
+								resultMatrix.setDataAsDouble(x, y, 1, Math.atan2(fArray[((wc-x) + (_h+(hc-y)) * _w + (_z+(zc-k)) * _w * _h)*2 + 1], fArray[((wc-x) + (_h+(hc-y)) * _w + (_z+(zc-k)) * _w * _h)*2 + 0]));
 							}
 						}
 						for(int x = wc+1; x < _w; x++)
 						{
 							for(int y = 0; y < hc+1; y++)
 							{
-								resultMatrix.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((x-wc) + (hc-y) * _w + (k-zc) * _w * _h)*2 + 0], 2)+Math.pow(fArray[((x-wc) + (hc-y) * _w + (k-zc) * _w * _h)*2 + 1], 2)));
-								resultMatrix.setDataAsDouble(x, y, 1, Math.atan2(fArray[((x-wc) + (hc-y) * _w + (k-zc) * _w * _h)*2 + 1], fArray[((x-wc) + (hc-y) * _w + (k-zc) * _w * _h)*2 + 0]));
+								resultMatrix.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((_w+(wc-x)) + (hc-y) * _w + (_z+(zc-k)) * _w * _h)*2 + 0], 2)+Math.pow(fArray[((_w+(wc-x)) + (hc-y) * _w + (_z+(zc-k)) * _w * _h)*2 + 1], 2)));
+								resultMatrix.setDataAsDouble(x, y, 1, Math.atan2(fArray[((_w+(wc-x)) + (hc-y) * _w + (_z+(zc-k)) * _w * _h)*2 + 1], fArray[((_w+(wc-x)) + (hc-y) * _w + (_z+(zc-k)) * _w * _h)*2 + 0]));
 							}
 							for(int y = hc+1; y < _h; y++)
 							{
-								resultMatrix.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((x-wc) + (y-hc) * _w + (k-zc) * _w * _h)*2 + 0], 2)+Math.pow(fArray[((x-wc) + (y-hc) * _w + (k-zc) * _w * _h)*2 + 1], 2)));
-								resultMatrix.setDataAsDouble(x, y, 1, Math.atan2(fArray[((x-wc) + (y-hc) * _w + (k-zc) * _w * _h)*2 + 1], fArray[((x-wc) + (y-hc) * _w + (k-zc) * _w * _h)*2 + 0]));
+								resultMatrix.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w + (_z+(zc-k)) * _w * _h)*2 + 0], 2)+Math.pow(fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w + (_z+(zc-k)) * _w * _h)*2 + 1], 2)));
+								resultMatrix.setDataAsDouble(x, y, 1, Math.atan2(fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w + (_z+(zc-k)) * _w * _h)*2 + 1], fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w + (_z+(zc-k)) * _w * _h)*2 + 0]));
 							}
 						}
 					}
@@ -224,21 +224,21 @@ public class fft extends EzPlug {
 							}
 							for(int y = hc+1; y < _h; y++)
 							{
-								resultMatrix.setDataAsDouble(x, y, 0, fArray[((wc-x) + (y-hc) * _w + (zc-k) * _w * _h)*2 + 0]);
-								resultMatrix.setDataAsDouble(x, y, 1, fArray[((wc-x) + (y-hc) * _w + (zc-k) * _w * _h)*2 + 1]);
+								resultMatrix.setDataAsDouble(x, y, 0, fArray[((wc-x) + (_h+(hc-y)) * _w + (zc-k) * _w * _h)*2 + 0]);
+								resultMatrix.setDataAsDouble(x, y, 1, fArray[((wc-x) + (_h+(hc-y)) * _w + (zc-k) * _w * _h)*2 + 1]);
 							}
 						}
 						for(int x = wc+1; x < _w; x++)
 						{
 							for(int y = 0; y < hc+1; y++)
 							{
-								resultMatrix.setDataAsDouble(x, y, 0, fArray[((x-wc) + (hc-y) * _w + (zc-k) * _w * _h)*2 + 0]);
-								resultMatrix.setDataAsDouble(x, y, 1, fArray[((x-wc) + (hc-y) * _w + (zc-k) * _w * _h)*2 + 1]);
+								resultMatrix.setDataAsDouble(x, y, 0, fArray[((_w+(wc-x)) + (hc-y) * _w + (zc-k) * _w * _h)*2 + 0]);
+								resultMatrix.setDataAsDouble(x, y, 1, fArray[((_w+(wc-x)) + (hc-y) * _w + (zc-k) * _w * _h)*2 + 1]);
 							}
 							for(int y = hc+1; y < _h; y++)
 							{
-								resultMatrix.setDataAsDouble(x, y, 0, fArray[((x-wc) + (y-hc) * _w + (zc-k) * _w * _h)*2 + 0]);
-								resultMatrix.setDataAsDouble(x, y, 1, fArray[((x-wc) + (y-hc) * _w + (zc-k) * _w * _h)*2 + 1]);
+								resultMatrix.setDataAsDouble(x, y, 0, fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w + (zc-k) * _w * _h)*2 + 0]);
+								resultMatrix.setDataAsDouble(x, y, 1, fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w + (zc-k) * _w * _h)*2 + 1]);
 							}
 						}
 					}
@@ -257,26 +257,26 @@ public class fft extends EzPlug {
 						{
 							for(int y = 0; y < hc+1; y++)
 							{
-								resultMatrix.setDataAsDouble(x, y, 0, fArray[((wc-x) + (hc-y) * _w + (k-zc) * _w * _h)*2 + 0]);
-								resultMatrix.setDataAsDouble(x, y, 1, fArray[((wc-x) + (hc-y) * _w + (k-zc) * _w * _h)*2 + 1]);
+								resultMatrix.setDataAsDouble(x, y, 0, fArray[((wc-x) + (hc-y) * _w + (_z+(zc-k)) * _w * _h)*2 + 0]);
+								resultMatrix.setDataAsDouble(x, y, 1, fArray[((wc-x) + (hc-y) * _w + (_z+(zc-k)) * _w * _h)*2 + 1]);
 							}
 							for(int y = hc+1; y < _h; y++)
 							{
-								resultMatrix.setDataAsDouble(x, y, 0, fArray[((wc-x) + (y-hc) * _w + (k-zc) * _w * _h)*2 + 0]);
-								resultMatrix.setDataAsDouble(x, y, 1, fArray[((wc-x) + (y-hc) * _w + (k-zc) * _w * _h)*2 + 1]);
+								resultMatrix.setDataAsDouble(x, y, 0, fArray[((wc-x) + (_h+(hc-y)) * _w + (_z+(zc-k)) * _w * _h)*2 + 0]);
+								resultMatrix.setDataAsDouble(x, y, 1, fArray[((wc-x) + (_h+(hc-y)) * _w + (_z+(zc-k)) * _w * _h)*2 + 1]);
 							}
 						}
 						for(int x = wc+1; x < _w; x++)
 						{
 							for(int y = 0; y < hc+1; y++)
 							{
-								resultMatrix.setDataAsDouble(x, y, 0, fArray[((x-wc) + (hc-y) * _w + (k-zc) * _w * _h)*2 + 0]);
-								resultMatrix.setDataAsDouble(x, y, 1, fArray[((x-wc) + (hc-y) * _w + (k-zc) * _w * _h)*2 + 1]);
+								resultMatrix.setDataAsDouble(x, y, 0, fArray[((_w+(wc-x)) + (hc-y) * _w + (_z+(zc-k)) * _w * _h)*2 + 0]);
+								resultMatrix.setDataAsDouble(x, y, 1, fArray[((_w+(wc-x)) + (hc-y) * _w + (_z+(zc-k)) * _w * _h)*2 + 1]);
 							}
 							for(int y = hc+1; y < _h; y++)
 							{
-								resultMatrix.setDataAsDouble(x, y, 0, fArray[((x-wc) + (y-hc) * _w + (k-zc) * _w * _h)*2 + 0]);
-								resultMatrix.setDataAsDouble(x, y, 1, fArray[((x-wc) + (y-hc) * _w + (k-zc) * _w * _h)*2 + 1]);
+								resultMatrix.setDataAsDouble(x, y, 0, fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w + (_z+(zc-k)) * _w * _h)*2 + 0]);
+								resultMatrix.setDataAsDouble(x, y, 1, fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w + (_z+(zc-k)) * _w * _h)*2 + 1]);
 							}
 						}
 					}
@@ -336,14 +336,14 @@ public class fft extends EzPlug {
 					else // Real/Imaginary Pair
 					{	fSequence.setChannelName(0, "Real");
 					fSequence.setChannelName(1, "Imaginary");
-						for(int x = 0; x < _w; x++)
+					for(int x = 0; x < _w; x++)
+					{
+						for(int y = 0; y < _h; y++)
 						{
-							for(int y = 0; y < _h; y++)
-							{
-								resultArray.setDataAsDouble(x, y, 0, fArray[(x + y * _w)*2 + 0]);
-								resultArray.setDataAsDouble(x, y, 1, fArray[(x + y * _w)*2 + 1]);
-							}
+							resultArray.setDataAsDouble(x, y, 0, fArray[(x + y * _w)*2 + 0]);
+							resultArray.setDataAsDouble(x, y, 1, fArray[(x + y * _w)*2 + 1]);
 						}
+					}
 
 					}
 
@@ -353,7 +353,7 @@ public class fft extends EzPlug {
 
 				fSequence.setImage(0, k, resultArray);
 			}
-			
+
 		}
 		else
 		{ //Swap quadrants
@@ -368,8 +368,10 @@ public class fft extends EzPlug {
 				try
 				{
 					if(display=="Magnitude/Phase Pair")
-					{fSequence.setChannelName(0, "Magnitude");
-					fSequence.setChannelName(1, "Phase");
+					{
+						fSequence.setChannelName(0, "Magnitude");
+						fSequence.setChannelName(1, "Phase");
+
 						for(int x = 0; x < (wc+1); x++)
 						{
 							for(int y = 0; y < (hc+1); y++)
@@ -379,8 +381,8 @@ public class fft extends EzPlug {
 							}
 							for(int y = hc+1; y < _h; y++)
 							{
-								resultArray.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((wc-x) + (y-hc) * _w)*2 + 0], 2)+Math.pow(fArray[((wc-x) + (y-hc) * _w)*2 + 1], 2)));
-								resultArray.setDataAsDouble(x, y, 1, Math.atan2(fArray[((wc-x) + (y-hc) * _w)*2 + 1], fArray[((wc-x) + (y-hc) * _w)*2 + 0]));
+								resultArray.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((wc-x) + (_h+(hc-y)) * _w)*2 + 0], 2)+Math.pow(fArray[((wc-x) + (_h+(hc-y)) * _w)*2 + 1], 2)));
+								resultArray.setDataAsDouble(x, y, 1, Math.atan2(fArray[((wc-x) + (_h+(hc-y)) * _w)*2 + 1], fArray[((wc-x) + (_h+(hc-y)) * _w)*2 + 0]));
 							}
 
 						}
@@ -388,19 +390,20 @@ public class fft extends EzPlug {
 						{
 							for(int y = 0; y < (hc+1); y++)
 							{
-								resultArray.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((x-wc) + (hc-y) * _w)*2 + 0], 2)+Math.pow(fArray[((x-wc) + (hc-y) * _w)*2 + 1], 2)));
-								resultArray.setDataAsDouble(x, y, 1, Math.atan2(fArray[((x-wc) + (hc-y) * _w)*2 + 1], fArray[((x-wc) + (hc-y) * _w)*2 + 0]));
+								resultArray.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((_w+(wc-x)) + (hc-y) * _w)*2 + 0], 2)+Math.pow(fArray[((_w+(wc-x)) + (hc-y) * _w)*2 + 1], 2)));
+								resultArray.setDataAsDouble(x, y, 1, Math.atan2(fArray[((_w+(wc-x)) + (hc-y) * _w)*2 + 1], fArray[((_w+(wc-x)) + (hc-y) * _w)*2 + 0]));
 							}
 							for(int y = hc+1; y < _h; y++)
 							{
-								resultArray.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((x-wc) + (y-hc) * _w)*2 + 0], 2)+Math.pow(fArray[((x-wc) + (y-hc) * _w)*2 + 1], 2)));
-								resultArray.setDataAsDouble(x, y, 1, Math.atan2(fArray[((x-wc) + (y-hc) * _w)*2 + 1], fArray[((x-wc) + (y-hc) * _w)*2 + 0]));
+								resultArray.setDataAsDouble(x, y, 0, Math.sqrt(Math.pow(fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w)*2 + 0], 2)+Math.pow(fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w)*2 + 1], 2)));
+								resultArray.setDataAsDouble(x, y, 1, Math.atan2(fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w)*2 + 1], fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w)*2 + 0]));
 							}
 						}
 					}					
 					else //Real/Imaginary Pair
-					{fSequence.setChannelName(0, "Real");
-					fSequence.setChannelName(1, "Imaginary");
+					{
+						fSequence.setChannelName(0, "Real");
+						fSequence.setChannelName(1, "Imaginary");
 						for(int x = 0; x < (wc+1); x++)
 						{
 							for(int y = 0; y < (hc+1); y++)
@@ -410,8 +413,8 @@ public class fft extends EzPlug {
 							}
 							for(int y = hc+1; y < _h; y++)
 							{
-								resultArray.setDataAsDouble(x, y, 0, fArray[((wc-x) + (y-hc) * _w)*2 + 0]);
-								resultArray.setDataAsDouble(x, y, 1, fArray[((wc-x) + (y-hc) * _w)*2 + 1]);
+								resultArray.setDataAsDouble(x, y, 0, fArray[((wc-x) + (_h+(hc-y)) * _w)*2 + 0]);
+								resultArray.setDataAsDouble(x, y, 1, fArray[((wc-x) + (_h+(hc-y)) * _w)*2 + 1]);
 							}
 
 						}
@@ -419,13 +422,13 @@ public class fft extends EzPlug {
 						{
 							for(int y = 0; y < (hc+1); y++)
 							{
-								resultArray.setDataAsDouble(x, y, 0, fArray[((x-wc) + (hc-y) * _w)*2 + 0]);
-								resultArray.setDataAsDouble(x, y, 1, fArray[((x-wc) + (hc-y) * _w)*2 + 1]);
+								resultArray.setDataAsDouble(x, y, 0, fArray[((_w+(wc-x)) + (hc-y) * _w)*2 + 0]);
+								resultArray.setDataAsDouble(x, y, 1, fArray[((_w+(wc-x)) + (hc-y) * _w)*2 + 1]);
 							}
 							for(int y = hc+1; y < _h; y++)
 							{
-								resultArray.setDataAsDouble(x, y, 0, fArray[((x-wc) + (y-hc) * _w)*2 + 0]);
-								resultArray.setDataAsDouble(x, y, 1, fArray[((x-wc) + (y-hc) * _w)*2 + 1]);
+								resultArray.setDataAsDouble(x, y, 0, fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w)*2 + 0]);
+								resultArray.setDataAsDouble(x, y, 1, fArray[((_w+(wc-x)) + (_h+(hc-y)) * _w)*2 + 1]);
 							}
 						}						
 
@@ -437,7 +440,7 @@ public class fft extends EzPlug {
 
 				fSequence.setImage(0, k, resultArray);
 			}
-			
+
 		}
 
 
